@@ -1,0 +1,125 @@
+<svg width="100%" viewBox="0 0 680 520" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Modular prosthetics system diagram</title>
+<desc>An illustration of a modular prosthetic leg showing the socket, knee module, pylon, ankle module, and foot, with callouts for sensor integration, carbon fiber materials, and 3D printed components.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <linearGradient id="limb-grad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#1a2a5e"/>
+    <stop offset="100%" stop-color="#243580"/>
+  </linearGradient>
+  <linearGradient id="carbon-grad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#1c2c4a"/>
+    <stop offset="100%" stop-color="#263d6a"/>
+  </linearGradient>
+  <linearGradient id="joint-grad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#1a3560"/>
+    <stop offset="100%" stop-color="#2a4880"/>
+  </linearGradient>
+</defs>
+
+<!-- background is transparent to match site dark theme -->
+
+<!-- ── PROSTHETIC LEG (centered around x=280) ── -->
+
+<!-- SOCKET (top) -->
+<path d="M220,48 Q210,48 208,58 L202,148 Q200,158 210,160 L350,160 Q360,158 358,148 L352,58 Q350,48 340,48 Z"
+      fill="url(#limb-grad)" stroke="#4f8dff" stroke-width="1.2"/>
+<text x="280" y="98"  text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" fill="#f4f7ff" font-weight="600">Socket</text>
+<text x="280" y="116" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#8fb6ff">custom fit shell</text>
+
+<!-- connector band -->
+<rect x="214" y="158" width="132" height="12" rx="4" fill="#2a3d7a" stroke="#4f8dff" stroke-width="0.8"/>
+
+<!-- KNEE MODULE -->
+<rect x="210" y="170" width="140" height="68" rx="10" fill="url(#joint-grad)" stroke="#4f8dff" stroke-width="1.4"/>
+<!-- knee bolt detail left -->
+<circle cx="222" cy="204" r="7" fill="#0e1a42" stroke="#4f8dff" stroke-width="1"/>
+<circle cx="222" cy="204" r="3" fill="#4f8dff" opacity="0.6"/>
+<!-- knee bolt detail right -->
+<circle cx="338" cy="204" r="7" fill="#0e1a42" stroke="#4f8dff" stroke-width="1"/>
+<circle cx="338" cy="204" r="3" fill="#4f8dff" opacity="0.6"/>
+<text x="280" y="197" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" fill="#f4f7ff" font-weight="600">Knee module</text>
+<text x="280" y="215" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#8fb6ff">interchangeable joint</text>
+
+<!-- connector band -->
+<rect x="248" y="238" width="64" height="12" rx="4" fill="#2a3d7a" stroke="#4f8dff" stroke-width="0.8"/>
+
+<!-- PYLON (carbon fibre tube) -->
+<rect x="255" y="250" width="50" height="130" rx="6" fill="url(#carbon-grad)" stroke="#6b8ccc" stroke-width="1"/>
+<!-- carbon weave lines -->
+<line x1="255" y1="268" x2="305" y2="268" stroke="#1e3260" stroke-width="0.8"/>
+<line x1="255" y1="284" x2="305" y2="284" stroke="#1e3260" stroke-width="0.8"/>
+<line x1="255" y1="300" x2="305" y2="300" stroke="#1e3260" stroke-width="0.8"/>
+<line x1="255" y1="316" x2="305" y2="316" stroke="#1e3260" stroke-width="0.8"/>
+<line x1="255" y1="332" x2="305" y2="332" stroke="#1e3260" stroke-width="0.8"/>
+<line x1="255" y1="348" x2="305" y2="348" stroke="#1e3260" stroke-width="0.8"/>
+<line x1="265" y1="250" x2="265" y2="380" stroke="#1e3260" stroke-width="0.7"/>
+<line x1="280" y1="250" x2="280" y2="380" stroke="#1e3260" stroke-width="0.7"/>
+<line x1="295" y1="250" x2="295" y2="380" stroke="#1e3260" stroke-width="0.7"/>
+<text x="280" y="313" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#8fb6ff">pylon</text>
+
+<!-- connector band -->
+<rect x="248" y="378" width="64" height="12" rx="4" fill="#2a3d7a" stroke="#4f8dff" stroke-width="0.8"/>
+
+<!-- ANKLE MODULE -->
+<rect x="215" y="390" width="130" height="58" rx="10" fill="url(#joint-grad)" stroke="#4f8dff" stroke-width="1.4"/>
+<circle cx="227" cy="419" r="6" fill="#0e1a42" stroke="#4f8dff" stroke-width="1"/>
+<circle cx="227" cy="419" r="2.5" fill="#4f8dff" opacity="0.6"/>
+<circle cx="333" cy="419" r="6" fill="#0e1a42" stroke="#4f8dff" stroke-width="1"/>
+<circle cx="333" cy="419" r="2.5" fill="#4f8dff" opacity="0.6"/>
+<text x="280" y="413" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" fill="#f4f7ff" font-weight="600">Ankle module</text>
+<text x="280" y="431" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#8fb6ff">adaptive flex joint</text>
+
+<!-- FOOT -->
+<path d="M222,448 L338,448 Q345,448 346,456 L346,462 Q340,478 310,482 L230,482 Q210,476 214,462 L214,456 Q215,448 222,448 Z"
+      fill="url(#limb-grad)" stroke="#4f8dff" stroke-width="1.2"/>
+<text x="280" y="469" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#f4f7ff">carbon foot</text>
+
+<!-- ── MODULE CONNECTORS (visible swap points) ── -->
+<!-- arrows showing modularity at each joint band -->
+<path d="M190,164 L160,164" fill="none" stroke="#4f8dff" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<path d="M190,243 L160,243" fill="none" stroke="#4f8dff" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<path d="M190,383 L160,383" fill="none" stroke="#4f8dff" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<text x="154" y="158" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="#4f8dff">swap</text>
+<text x="154" y="237" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="#4f8dff">swap</text>
+<text x="154" y="377" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="#4f8dff">swap</text>
+
+<!-- ── CALLOUT LINES (right side) ── -->
+
+<!-- Sensor integration callout -->
+<circle cx="350" cy="195" r="2.5" fill="#8fb6ff"/>
+<path d="M352,195 L420,195 L420,130" fill="none" stroke="#6b769b" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<rect x="398" y="82" width="186" height="46" rx="6" fill="#0b1430" stroke="#16224d" stroke-width="1"/>
+<text x="491" y="103" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" fill="#f4f7ff">Sensor integration</text>
+<text x="491" y="120" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#6b8ccc">IMU · pressure · gait feedback</text>
+
+<!-- Carbon fiber callout -->
+<circle cx="305" cy="300" r="2.5" fill="#8fb6ff"/>
+<path d="M307,300 L420,300" fill="none" stroke="#6b769b" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<rect x="420" y="278" width="186" height="44" rx="6" fill="#0b1430" stroke="#16224d" stroke-width="1"/>
+<text x="513" y="299" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" fill="#f4f7ff">Carbon fiber composite</text>
+<text x="513" y="316" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#6b8ccc">high strength-to-weight ratio</text>
+
+<!-- 3D printing callout -->
+<circle cx="220" cy="419" r="2.5" fill="#8fb6ff"/>
+<path d="M214,419 L90,419 L90,370" fill="none" stroke="#6b769b" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<rect x="18" y="322" width="162" height="46" rx="6" fill="#0b1430" stroke="#16224d" stroke-width="1"/>
+<text x="99" y="343" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" fill="#f4f7ff">3D printed joints</text>
+<text x="99" y="360" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#6b8ccc">rapid custom fabrication</text>
+
+<!-- User-centered callout -->
+<circle cx="210" cy="100" r="2.5" fill="#8fb6ff"/>
+<path d="M208,100 L90,100 L90,150" fill="none" stroke="#6b769b" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<rect x="18" y="150" width="162" height="46" rx="6" fill="#0b1430" stroke="#16224d" stroke-width="1"/>
+<text x="99" y="171" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" fill="#f4f7ff">User-centered fit</text>
+<text x="99" y="188" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#6b8ccc">custom socket geometry</text>
+
+<!-- foot callout -->
+<circle cx="310" cy="478" r="2.5" fill="#8fb6ff"/>
+<path d="M310,481 L310,504 L420,504" fill="none" stroke="#6b769b" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<rect x="420" y="482" width="186" height="34" rx="6" fill="#0b1430" stroke="#16224d" stroke-width="1"/>
+<text x="513" y="497" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" fill="#f4f7ff">Energy return foot</text>
+<text x="513" y="511" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="#6b8ccc">spring-loaded carbon blade</text>
+</svg>
