@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arvindh Balaji — Electrical Engineering Portfolio</title>
+<meta name="description" content="Electrical Engineering student at UC Santa Cruz. Embedded AI systems, autonomous drones, FPGA design, and Formula SAE aerodynamics." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --black: #05070e;
+    --navy-900: #070d1c;
+    --navy-800: #0a1330;
+    --navy-700: #0e1a42;
+    --navy-card: #0b1430;
+    --navy-line: #16224d;
+    --white: #f4f7ff;
+    --muted: #aab4d4;
+    --dim: #6b769b;
+    --accent: #4f8dff;
+    --accent-soft: #8fb6ff;
+    --glow: rgba(79, 141, 255, 0.35);
+    --maxw: 1180px;
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Manrope', system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Blueprint grid + glow atmosphere */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,141,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,141,255,0.05) 1px, transparent 1px);
+    background-size: 46px 46px;
+    z-index: 0;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    top: -20%; left: 50%;
+    transform: translateX(-50%);
+    width: 90vw; height: 60vh;
+    background: radial-gradient(ellipse at center, var(--glow), transparent 70%);
+    filter: blur(40px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    backdrop-filter: blur(14px);
+    background: rgba(5, 7, 14, 0.72);
+    border-bottom: 1px solid var(--navy-line);
+    transition: background 0.3s;
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 16px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem;
+    letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px;
+    color: var(--white); text-decoration: none;
+  }
+  .logo .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 12px var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.8);} }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 0.01em; transition: color 0.2s; position: relative;
+  }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: -5px; width: 0; height: 1.5px;
+    background: var(--accent); transition: width 0.25s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    border: 1px solid var(--accent); color: var(--accent) !important;
+    padding: 8px 16px; border-radius: 999px; font-weight: 600 !important;
+  }
+  .nav-cta:hover { background: var(--accent); color: var(--black) !important; box-shadow: 0 0 18px var(--glow); }
+  .nav-cta::after { display: none; }
+  .menu-btn { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
+
+  /* ---------- HERO ---------- */
+  header.hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 120px 0 80px; position: relative;
+  }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; color: var(--accent);
+    letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 22px;
+    display: inline-flex; align-items: center; gap: 12px;
+    opacity: 0; animation: rise 0.7s ease forwards 0.1s;
+  }
+  .eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--accent); }
+  .hero h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2.8rem, 8vw, 6rem); line-height: 0.98; letter-spacing: -0.03em;
+    margin-bottom: 26px; opacity: 0; animation: rise 0.7s ease forwards 0.22s;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(110deg, var(--accent), var(--accent-soft), #ffffff);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p.lead {
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--muted); max-width: 640px;
+    margin-bottom: 38px; opacity: 0; animation: rise 0.7s ease forwards 0.34s;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; animation: rise 0.7s ease forwards 0.46s; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem;
+    padding: 14px 26px; border-radius: 999px; text-decoration: none; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s; border: none;
+  }
+  .btn-primary { background: var(--accent); color: var(--black); box-shadow: 0 0 24px var(--glow); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 32px var(--glow); }
+  .btn-ghost { background: transparent; color: var(--white); border: 1px solid var(--navy-line); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-meta {
+    margin-top: 56px; display: flex; gap: 40px; flex-wrap: wrap;
+    opacity: 0; animation: rise 0.7s ease forwards 0.58s;
+  }
+  .hero-meta div { display: flex; flex-direction: column; }
+  .hero-meta .num { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.8rem; color: var(--white); }
+  .hero-meta .lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ---------- SECTION SHELL ---------- */
+  section { padding: 100px 0; position: relative; }
+  .sec-head { margin-bottom: 54px; }
+  .sec-tag {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--accent);
+    letter-spacing: 0.16em; text-transform: uppercase; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+  }
+  .sec-tag::before { content: ""; width: 26px; height: 1px; background: var(--accent); }
+  .sec-head h2 {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(2rem, 5vw, 3.2rem);
+    letter-spacing: -0.02em; line-height: 1.05; max-width: 720px;
+  }
+  .sec-head p { color: var(--muted); max-width: 620px; margin-top: 16px; font-size: 1.05rem; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start; }
+  .about-grid p { color: var(--muted); font-size: 1.08rem; margin-bottom: 18px; }
+  .about-grid p strong { color: var(--white); font-weight: 600; }
+  .edu-card {
+    background: var(--navy-card); border: 1px solid var(--navy-line); border-radius: var(--radius);
+    padding: 28px; position: relative; overflow: hidden;
+  }
+  .edu-card::before {
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .edu-card h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; margin-bottom: 6px; }
+  .edu-card .school { color: var(--accent-soft); font-weight: 600; margin-bottom: 4px; }
+  .edu-card .meta { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--dim); margin-bottom: 18px; }
+  .edu-card .course-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .edu-card ul { list-style: none; }
+  .edu-card li { color: var(--muted); font-size: 0.92rem; padding-left: 18px; position: relative; margin-bottom: 6px; }
+  .edu-card li::before { content: ""; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; background: var(--accent); border-radius: 1px; }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .skill-card {
+    background: var(--navy-card); border: 1px solid var(--navy-line); border-radius: var(--radius);
+    padding: 26px; transition: transform 0.25s, border-color 0.25s;
+  }
+  .skill-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .skill-card .ic { font-family: 'IBM Plex Mono', monospace; color: var(--accent); font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 14px; }
+  .skill-card h3 { font-family: 'Syne', sans-serif; font-size: 1.15rem; margin-bottom: 16px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 0.8rem; padding: 6px 12px; border-radius: 999px;
+    background: var(--navy-800); border: 1px solid var(--navy-line); color: var(--muted);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .chip:hover { color: var(--white); border-color: var(--accent); }
+
+  /* ---------- PROJECTS ---------- */
+  .projects { display: flex; flex-direction: column; gap: 32px; }
+  .project {
+    display: grid; grid-template-columns: 1fr 1.1fr; gap: 0;
+    background: var(--navy-card); border: 1px solid var(--navy-line);
+    border-radius: 20px; overflow: hidden; transition: border-color 0.3s, transform 0.3s;
+  }
+  .project:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .project:nth-child(even) .proj-media { order: 2; }
+
+  .proj-media {
+    position: relative; min-height: 320px; background: var(--navy-800);
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .proj-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* Placeholder shown when no image yet */
+  .proj-placeholder {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px; text-align: center; padding: 30px;
+    background-image:
+      linear-gradient(rgba(79,141,255,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,141,255,0.08) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+  .proj-placeholder .pico {
+    width: 56px; height: 56px; border: 1.5px dashed var(--accent); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.5rem;
+  }
+  .proj-placeholder span { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--dim); letter-spacing: 0.08em; }
+
+  .proj-body { padding: 36px; display: flex; flex-direction: column; }
+  .proj-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; }
+  .proj-body h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; line-height: 1.15; margin-bottom: 14px; }
+  .proj-body p { color: var(--muted); font-size: 0.98rem; margin-bottom: 18px; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; margin-top: auto; }
+  .proj-tags .chip { font-size: 0.74rem; }
+  .proj-links { display: flex; gap: 14px; flex-wrap: wrap; }
+  .proj-link {
+    display: inline-flex; align-items: center; gap: 7px; font-size: 0.85rem; font-weight: 600;
+    color: var(--accent); text-decoration: none; padding: 9px 16px; border-radius: 999px;
+    border: 1px solid var(--navy-line); transition: all 0.2s;
+  }
+  .proj-link:hover { background: var(--accent); color: var(--black); border-color: var(--accent); }
+  .proj-link.disabled { color: var(--dim); border-style: dashed; pointer-events: none; }
+
+  /* ---------- RESUME ---------- */
+  .resume-block {
+    background: linear-gradient(135deg, var(--navy-700), var(--navy-800));
+    border: 1px solid var(--navy-line); border-radius: 22px; padding: 48px;
+    display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;
+    position: relative; overflow: hidden;
+  }
+  .resume-block::after {
+    content: ""; position: absolute; right: -60px; top: -60px; width: 240px; height: 240px;
+    background: radial-gradient(circle, var(--glow), transparent 70%); filter: blur(20px);
+  }
+  .resume-block .rtext { position: relative; z-index: 1; max-width: 540px; }
+  .resume-block h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 12px; }
+  .resume-block p { color: var(--muted); }
+  .resume-block .btn { position: relative; z-index: 1; }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer { padding: 90px 0 50px; border-top: 1px solid var(--navy-line); margin-top: 40px; }
+  .contact-head { text-align: center; margin-bottom: 48px; }
+  .contact-head .sec-tag { justify-content: center; }
+  .contact-head .sec-tag::before { display: none; }
+  .contact-head h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(2rem, 6vw, 3.6rem); letter-spacing: -0.02em; }
+  .contact-head a.email-big {
+    display: inline-block; margin-top: 18px; font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--accent); text-decoration: none; font-weight: 600;
+    border-bottom: 1px solid transparent; transition: border-color 0.2s;
+  }
+  .contact-head a.email-big:hover { border-color: var(--accent); }
+  .contact-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-bottom: 50px; }
+  .contact-links a {
+    display: inline-flex; align-items: center; gap: 9px; padding: 12px 22px;
+    border: 1px solid var(--navy-line); border-radius: 999px; color: var(--white);
+    text-decoration: none; font-weight: 500; font-size: 0.92rem; transition: all 0.2s;
+  }
+  .contact-links a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .foot-bottom {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    border-top: 1px solid var(--navy-line); padding-top: 24px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--dim);
+  }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal { opacity: 0; transform: translateY(34px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 880px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--navy-900); border-bottom: 1px solid var(--navy-line); padding: 24px 28px; gap: 18px;
+    }
+    .menu-btn { display: block; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .project { grid-template-columns: 1fr; }
+    .project:nth-child(even) .proj-media { order: 0; }
+    .proj-media { min-height: 220px; }
+    .resume-block { padding: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= NAV ======================= -->
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="logo"><span class="dot"></span>Arvindh Balaji</a>
+    <button class="menu-btn" aria-label="menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <div class="nav-links" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="Arvindh_Balaji_Resume.pdf" target="_blank" class="nav-cta">Resume</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow">Electrical Engineering · UC Santa Cruz</span>
+    <h1>Electrical Engineering <span class="grad">student &amp; builder.</span></h1>
+    <p class="lead">I build hardware and the intelligence that runs on it. Embedded AI, autonomous drones, FPGA logic, and Formula SAE aerodynamics, taken from a blank CAD canvas through validated, working prototypes.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View my work →</a>
+      <a href="Arvindh_Balaji_Resume.pdf" target="_blank" class="btn btn-ghost">Download resume</a>
+    </div>
+    <div class="hero-meta">
+      <div><span class="num">4+</span><span class="lbl">Engineering Projects</span></div>
+      <div><span class="num">2028</span><span class="lbl">Expected Graduation</span></div>
+      <div><span class="num">1</span><span class="lbl">Published Research Paper</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= ABOUT ======================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">01 / About</div>
+      <h2>An engineer who works across the full stack of hardware.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I am an Electrical Engineering student at UC Santa Cruz with hands-on experience designing, building, and validating embedded AI systems, autonomous drones, and Formula SAE aerodynamic components.</p>
+        <p>My work spans <strong>mechanical design, firmware, computer vision, PCB-level hardware, and technical documentation</strong>. I like owning a problem end to end, from sketching geometry in CAD to soldering the board, tuning the model, and field testing the result.</p>
+        <p>I am looking for an engineering internship where I can apply that hardware and software development experience to real product challenges.</p>
+      </div>
+      <div class="edu-card reveal">
+        <div class="course-label">Education</div>
+        <h3>B.S. Electrical Engineering</h3>
+        <div class="school">University of California, Santa Cruz</div>
+        <div class="meta">Sep 2024 — Expected May 2028</div>
+        <div class="course-label">Relevant Coursework</div>
+        <ul>
+          <li>Circuit Theory, Analysis &amp; Design</li>
+          <li>Digital Logic Design (FPGA)</li>
+          <li>Analog Filters &amp; Signal Processing</li>
+          <li>Power Transfer &amp; Power Electronics</li>
+          <li>Algorithms &amp; Data Structures</li>
+          <li>Computer Systems</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SKILLS ======================= -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">02 / Capabilities</div>
+      <h2>Skills &amp; certifications.</h2>
+      <p>Tools and methods I use to take an idea from design review to a working, documented build.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="ic">// software</div>
+        <h3>Programming &amp; Software</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">C++</span><span class="chip">C</span>
+          <span class="chip">Java</span><span class="chip">MATLAB</span><span class="chip">Simulink</span>
+          <span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Git</span><span class="chip">Linux</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic">// fpga</div>
+        <h3>Hardware Description &amp; FPGA</h3>
+        <div class="chips">
+          <span class="chip">Verilog</span><span class="chip">VHDL</span><span class="chip">FPGA Design</span>
+          <span class="chip">Digital Logic Design</span><span class="chip">Vivado</span><span class="chip">Basys3</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic">// embedded</div>
+        <h3>Embedded &amp; Hardware</h3>
+        <div class="chips">
+          <span class="chip">Arduino</span><span class="chip">Raspberry Pi</span><span class="chip">STM32</span>
+          <span class="chip">ESP32</span><span class="chip">Firmware</span><span class="chip">I2C</span>
+          <span class="chip">SPI</span><span class="chip">UART</span><span class="chip">CAN Bus</span><span class="chip">Soldering</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic">// cad</div>
+        <h3>CAD &amp; Mechanical Design</h3>
+        <div class="chips">
+          <span class="chip">Onshape</span><span class="chip">SolidWorks</span><span class="chip">Fusion 360</span>
+          <span class="chip">AutoCAD</span><span class="chip">DFM / DFA</span><span class="chip">GD&amp;T</span>
+          <span class="chip">Tolerance Analysis</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic">// ai</div>
+        <h3>Robotics &amp; AI</h3>
+        <div class="chips">
+          <span class="chip">ROS</span><span class="chip">TensorFlow Lite</span><span class="chip">OpenCV</span>
+          <span class="chip">Computer Vision</span><span class="chip">Edge AI</span><span class="chip">UAV Development</span>
+          <span class="chip">Model Optimization</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic">// lab</div>
+        <h3>Lab, Test &amp; Circuit Tools</h3>
+        <div class="chips">
+          <span class="chip">Oscilloscope</span><span class="chip">Logic Analyzer</span><span class="chip">Function Generator</span>
+          <span class="chip">KiCad</span><span class="chip">Altium</span><span class="chip">LTspice</span><span class="chip">SPICE</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic">// certs</div>
+        <h3>Certifications</h3>
+        <div class="chips">
+          <span class="chip">Onshape Certified Associate (CAD)</span>
+          <span class="chip">Modular Prosthetics Research</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PROJECTS ======================= -->
+<!--
+  ================= HOW TO ADD A NEW PROJECT =================
+  Copy one <article class="project"> ... </article> block below and edit it.
+  To add a CAD render / schematic image, drop your image file next to this
+  index.html (e.g. "front-wing.png") and replace the <div class="proj-placeholder">
+  block with:   <img src="front-wing.png" alt="Front wing CAD render">
+  Each project supports multiple links (CAD, schematic, GitHub, PDF, video).
+  ============================================================
+-->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">03 / Selected Work</div>
+      <h2>Projects.</h2>
+      <p>A mix of team engineering, independent builds, and research. Replace the image panels with your CAD renders and schematics as you capture them.</p>
+    </div>
+
+    <div class="projects">
+
+      <!-- PROJECT 1: Formula Slug Aero -->
+      <article class="project reveal">
+        <div class="proj-media">
+          <!-- Replace this placeholder with: <img src="formula-aero.png" alt="Aero CAD"> -->
+          <div class="proj-placeholder">
+            <div class="pico">⌬</div>
+            <span>Add CAD render: formula-aero.png</span>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-kicker">Team Engineering · Apr 2025 — Present</div>
+          <h3>Formula Slug Aero Team</h3>
+          <p>End-to-end CAD design of aerodynamic components including the front wing, diffuser, and sidepod, advanced through 3+ documented iteration cycles in Onshape and SolidWorks from concept to competition-ready, manufacturable parts. I resolved packaging conflicts across the aero, chassis, and electrical subteams and presented geometry and material justifications at formal PDR and CDR style design reviews.</p>
+          <div class="proj-tags">
+            <span class="chip">Onshape</span><span class="chip">SolidWorks</span><span class="chip">DFM</span>
+            <span class="chip">Tolerance Analysis</span><span class="chip">Design Reviews</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link disabled" href="#">CAD Renders (add link)</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 2: AI-Powered Camera System -->
+      <article class="project reveal">
+        <div class="proj-media">
+          <!-- Replace with: <img src="ai-camera.png" alt="AI camera enclosure CAD"> -->
+          <div class="proj-placeholder">
+            <div class="pico">◉</div>
+            <span>Add CAD render: ai-camera.png</span>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-kicker">Personal Project · Jan 2025</div>
+          <h3>AI-Powered Camera System</h3>
+          <p>A sub-50 ms real-time computer vision system pairing Arduino microcontrollers with Python and C++ for live object detection and motion tracking on resource-constrained embedded hardware, communicating over I2C, SPI, and UART. I designed the full mechanical enclosure in Onshape and tuned lightweight models in TensorFlow Lite and OpenCV, benchmarking accuracy, latency, and power draw across firmware iterations with oscilloscope, multimeter, and logic analyzer measurements.</p>
+          <div class="proj-tags">
+            <span class="chip">TensorFlow Lite</span><span class="chip">OpenCV</span><span class="chip">Arduino</span>
+            <span class="chip">Edge AI</span><span class="chip">Onshape</span><span class="chip">C++</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link disabled" href="#">CAD / Schematic (add link)</a>
+            <a class="proj-link disabled" href="#">GitHub (add link)</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 3: Arduino Seedling Drone -->
+      <article class="project reveal">
+        <div class="proj-media" style="flex-direction:column;justify-content:flex-start;padding:0;background:#0a1126;min-height:0;">
+          <a href="seedling-drone.png" target="_blank" title="Open CAD render" style="display:block;width:100%;background:#eef2fb;border-bottom:1px solid var(--navy-line);position:relative;">
+            <img src="seedling-drone.png" alt="Arduino Seedling Drone CAD render, isometric view of the central chassis and four motor pods" style="width:100%;height:auto;object-fit:contain;padding:16px;display:block;">
+            <span style="position:absolute;bottom:8px;right:10px;font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:#3a4a78;letter-spacing:0.06em;">CAD · TAP TO ENLARGE</span>
+          </a>
+          <a href="seedling-drone-wiring.svg" target="_blank" title="Open full wiring diagram" style="display:block;width:100%;position:relative;">
+            <img src="seedling-drone-wiring.svg" alt="Arduino Seedling Drone system wiring diagram showing the LiPo battery, power distribution board, BEC, four ESC and brushless motor pairs, the Arduino flight controller, and the I2C and SPI sensor payload" style="width:100%;height:auto;object-fit:contain;padding:10px;display:block;">
+            <span style="position:absolute;bottom:8px;right:12px;font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:var(--dim);letter-spacing:0.06em;">WIRING · TAP TO ENLARGE</span>
+          </a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-kicker">Independent Build · Jun 2024 — Aug 2024</div>
+          <h3>Arduino Seedling Drone</h3>
+          <p>A fully functional custom drone built solo in 8 weeks, from blank CAD canvas to field-tested prototype. I designed and fabricated the airframe in Onshape, soldered and bench-tested the electronics, and integrated a multi-sensor camera payload covering color, shape, and thermal imaging. A Python and OpenCV pipeline classified planting zones from real-time aerial imagery by vegetation density and soil temperature, enabling autonomous field mapping without manual annotation.</p>
+          <div class="proj-tags">
+            <span class="chip">Onshape</span><span class="chip">Arduino</span><span class="chip">OpenCV</span>
+            <span class="chip">Sensor Fusion</span><span class="chip">UAV</span><span class="chip">Python</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="seedling-drone-wiring.svg" target="_blank">⚡ Wiring diagram</a>
+            <a class="proj-link disabled" href="#">Field Test Video (add link)</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 4: Modular Prosthetics Research (with paper PDF) -->
+      <article class="project reveal" id="research">
+        <div class="proj-media">
+          <!-- Replace with: <img src="prosthetics.png" alt="Modular prosthetics"> -->
+          <div class="proj-placeholder">
+            <div class="pico">⎔</div>
+            <span>Add figure: prosthetics.png</span>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-kicker">Research Paper · Aug 2023 — Jan 2024</div>
+          <h3>A Comprehensive Review on Modular Prosthetics</h3>
+          <p>A publication-quality LaTeX research paper evaluating modular prosthetic systems across mechanical design, user adaptability, and long-term viability in clinical and low-resource environments, completed over 5+ mentor-reviewed drafting cycles. I built quantitative cost and material feasibility models in Excel and Google Sheets to produce evidence-based design recommendations, organizing the performance metrics, statistical analysis, and data tables featured in the final paper.</p>
+          <div class="proj-tags">
+            <span class="chip">LaTeX</span><span class="chip">Research</span><span class="chip">Feasibility Modeling</span>
+            <span class="chip">Data Analysis</span><span class="chip">Technical Writing</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="Modular_Prosthetics_Research_Paper.pdf" target="_blank">📄 Read the paper</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================= RESUME ======================= -->
+<section id="resume">
+  <div class="wrap">
+    <div class="resume-block reveal">
+      <div class="rtext">
+        <h2>Want the full picture?</h2>
+        <p>My one-page resume covers my coursework, complete skill set, certifications, and the detail behind every project above. Open it as a PDF or download a copy.</p>
+      </div>
+      <a href="Arvindh_Balaji_Resume.pdf" target="_blank" class="btn btn-primary">↓ Open resume (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CONTACT / FOOTER ======================= -->
+<footer>
+  <div class="wrap">
+    <div class="contact-head">
+      <div class="sec-tag">04 / Contact</div>
+      <h2>Let's build something.</h2>
+      <br>
+      <a href="mailto:parvindh06@gmail.com" class="email-big">parvindh06@gmail.com</a>
+    </div>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/arvindh-balaji-106043248" target="_blank">in · LinkedIn</a>
+      <a href="mailto:parvindh06@gmail.com">✉ Email</a>
+      <a href="tel:+15104742354">☎ (510) 474-2354</a>
+      <a href="Arvindh_Balaji_Resume.pdf" target="_blank">📄 Resume</a>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Arvindh Balaji</span>
+      <span>Built for the next build.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Close mobile menu on link click
+  document.querySelectorAll('#navlinks a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open'))
+  );
+
+  // Nav background solid after scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 40 ? 'rgba(5,7,14,0.92)' : 'rgba(5,7,14,0.72)';
+  });
+</script>
+</body>
+</html>

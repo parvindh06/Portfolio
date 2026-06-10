@@ -1,0 +1,151 @@
+<svg viewBox="0 0 1180 780" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, 'IBM Plex Mono', 'Consolas', monospace">
+  <defs>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#16224d" stroke-width="1"/>
+    </pattern>
+    <style>
+      .t{fill:#f4f7ff;font-weight:600;}
+      .s{fill:#90a2cf;}
+      .pin{fill:#5f6f9c;}
+      .net{fill:none;stroke-linecap:round;stroke-linejoin:round;}
+      .lab{fill:#aeb9d8;}
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1180" height="780" fill="#070d1c"/>
+  <rect x="0" y="0" width="1180" height="780" fill="url(#grid)" opacity="0.55"/>
+
+  <!-- title -->
+  <text x="40" y="34" font-size="20" class="t" font-family="'Manrope', system-ui, sans-serif">Arduino Seedling Drone</text>
+  <text x="40" y="52" font-size="12.5" class="s">System wiring diagram · flight control (Arduino) and vision (ESP32-CAM &#8594; ground laptop) run as two separate systems</text>
+
+  <!-- ============ NETS ============ -->
+  <!-- POWER red -->
+  <path class="net" d="M124 130 L124 176" stroke="#ff5d6c" stroke-width="3.4"/>
+  <path class="net" d="M124 236 L124 470" stroke="#ff5d6c" stroke-width="3.4"/>
+  <path class="net" d="M208 206 L560 206" stroke="#ff5d6c" stroke-width="3.4"/>
+  <path class="net" d="M560 54 L560 246" stroke="#ff5d6c" stroke-width="3.4"/>
+  <path class="net" d="M560 54  L610 54"  stroke="#ff5d6c" stroke-width="3.4"/>
+  <path class="net" d="M560 118 L610 118" stroke="#ff5d6c" stroke-width="3.4"/>
+  <path class="net" d="M560 182 L610 182" stroke="#ff5d6c" stroke-width="3.4"/>
+  <path class="net" d="M560 246 L610 246" stroke="#ff5d6c" stroke-width="3.4"/>
+  <path class="net" d="M750 65  L860 65"  stroke="#ff5d6c" stroke-width="3.4"/>
+  <path class="net" d="M750 129 L860 129" stroke="#ff5d6c" stroke-width="3.4"/>
+  <path class="net" d="M750 193 L860 193" stroke="#ff5d6c" stroke-width="3.4"/>
+  <path class="net" d="M750 257 L860 257" stroke="#ff5d6c" stroke-width="3.4"/>
+
+  <!-- 5V orange -->
+  <path class="net" d="M208 490 L262 490 L262 268 L300 268" stroke="#ffb049" stroke-width="2.6"/>
+  <path class="net" d="M208 506 L540 506" stroke="#ffb049" stroke-width="2.6"/>
+
+  <!-- PWM blue -->
+  <path class="net" d="M500 180 L585 180 L585 72" stroke="#4f8dff" stroke-width="2"/>
+  <path class="net" d="M585 72  L610 72"  stroke="#4f8dff" stroke-width="2"/>
+  <path class="net" d="M585 136 L610 136" stroke="#4f8dff" stroke-width="2"/>
+  <path class="net" d="M585 200 L610 200" stroke="#4f8dff" stroke-width="2"/>
+  <path class="net" d="M585 264 L610 264" stroke="#4f8dff" stroke-width="2"/>
+
+  <!-- I2C green -->
+  <path class="net" d="M400 300 L400 330" stroke="#46d39a" stroke-width="2"/>
+  <path class="net" d="M650 532 L650 556" stroke="#46d39a" stroke-width="2"/>
+
+  <!-- WiFi cyan dashed -->
+  <path class="net" d="M760 496 L880 496" stroke="#36c5e0" stroke-width="2.2" stroke-dasharray="6 5"/>
+
+  <!-- ============ BOXES ============ -->
+  <!-- Battery -->
+  <rect x="40" y="70" width="168" height="60" rx="8" fill="#0b1430" stroke="#2c3c70" stroke-width="1.5"/>
+  <text x="124" y="96"  font-size="14.5" class="t" text-anchor="middle">LiPo Battery</text>
+  <text x="124" y="115" font-size="11" class="s" text-anchor="middle">3S · 11.1 V · 2200 mAh</text>
+  <!-- PDB -->
+  <rect x="40" y="176" width="168" height="60" rx="8" fill="#0b1430" stroke="#2c3c70" stroke-width="1.5"/>
+  <text x="124" y="202" font-size="14.5" class="t" text-anchor="middle">Power Distribution</text>
+  <text x="124" y="221" font-size="11" class="s" text-anchor="middle">Board (PDB)</text>
+  <!-- BEC -->
+  <rect x="40" y="470" width="168" height="56" rx="8" fill="#0b1430" stroke="#2c3c70" stroke-width="1.5"/>
+  <text x="124" y="494" font-size="14" class="t" text-anchor="middle">5V BEC / UBEC</text>
+  <text x="124" y="513" font-size="10.5" class="s" text-anchor="middle">11.1V &#8594; 5V logic rail</text>
+
+  <!-- Arduino -->
+  <rect x="300" y="150" width="200" height="150" rx="8" fill="#0b1430" stroke="#4f8dff" stroke-width="1.5"/>
+  <text x="400" y="184" font-size="15.5" class="t" text-anchor="middle">Arduino Nano</text>
+  <text x="400" y="202" font-size="10.5" class="s" text-anchor="middle">ATmega328P</text>
+  <text x="400" y="224" font-size="11.5" class="t" text-anchor="middle" font-family="'Manrope',sans-serif">Flight Controller</text>
+  <line x1="320" y1="236" x2="480" y2="236" stroke="#23315e" stroke-width="1"/>
+  <text x="400" y="256" font-size="10.5" class="pin" text-anchor="middle">PWM &#8594; D3 · D5 · D6 · D9</text>
+  <text x="400" y="274" font-size="10.5" class="pin" text-anchor="middle">I&#178;C &#8594; A4 (SDA) · A5 (SCL)</text>
+  <text x="400" y="292" font-size="10.5" class="pin" text-anchor="middle">5V / GND &#8592; BEC</text>
+  <!-- IMU -->
+  <rect x="300" y="330" width="200" height="52" rx="7" fill="#0b1430" stroke="#46d39a" stroke-width="1.5"/>
+  <text x="400" y="354" font-size="13.5" class="t" text-anchor="middle">MPU-6050 IMU</text>
+  <text x="400" y="372" font-size="10.5" class="s" text-anchor="middle">gyro + accel · I&#178;C · stabilization</text>
+
+  <!-- ESCs -->
+  <rect x="610" y="40"  width="140" height="50" rx="7" fill="#0b1430" stroke="#2c3c70" stroke-width="1.5"/>
+  <text x="680" y="62"  font-size="13" class="t" text-anchor="middle">ESC 1 · 30A</text>
+  <text x="680" y="79"  font-size="10" class="s" text-anchor="middle">front-left</text>
+  <rect x="610" y="104" width="140" height="50" rx="7" fill="#0b1430" stroke="#2c3c70" stroke-width="1.5"/>
+  <text x="680" y="126" font-size="13" class="t" text-anchor="middle">ESC 2 · 30A</text>
+  <text x="680" y="143" font-size="10" class="s" text-anchor="middle">front-right</text>
+  <rect x="610" y="168" width="140" height="50" rx="7" fill="#0b1430" stroke="#2c3c70" stroke-width="1.5"/>
+  <text x="680" y="190" font-size="13" class="t" text-anchor="middle">ESC 3 · 30A</text>
+  <text x="680" y="207" font-size="10" class="s" text-anchor="middle">rear-left</text>
+  <rect x="610" y="232" width="140" height="50" rx="7" fill="#0b1430" stroke="#2c3c70" stroke-width="1.5"/>
+  <text x="680" y="254" font-size="13" class="t" text-anchor="middle">ESC 4 · 30A</text>
+  <text x="680" y="271" font-size="10" class="s" text-anchor="middle">rear-right</text>
+
+  <!-- Motors -->
+  <rect x="860" y="40"  width="160" height="50" rx="7" fill="#0b1430" stroke="#2c3c70" stroke-width="1.5"/>
+  <text x="940" y="62"  font-size="12.5" class="t" text-anchor="middle">Brushless Motor 1</text>
+  <text x="940" y="79"  font-size="10" class="s" text-anchor="middle">2212 · 920KV · CW</text>
+  <rect x="860" y="104" width="160" height="50" rx="7" fill="#0b1430" stroke="#2c3c70" stroke-width="1.5"/>
+  <text x="940" y="126" font-size="12.5" class="t" text-anchor="middle">Brushless Motor 2</text>
+  <text x="940" y="143" font-size="10" class="s" text-anchor="middle">2212 · 920KV · CCW</text>
+  <rect x="860" y="168" width="160" height="50" rx="7" fill="#0b1430" stroke="#2c3c70" stroke-width="1.5"/>
+  <text x="940" y="190" font-size="12.5" class="t" text-anchor="middle">Brushless Motor 3</text>
+  <text x="940" y="207" font-size="10" class="s" text-anchor="middle">2212 · 920KV · CCW</text>
+  <rect x="860" y="232" width="160" height="50" rx="7" fill="#0b1430" stroke="#2c3c70" stroke-width="1.5"/>
+  <text x="940" y="254" font-size="12.5" class="t" text-anchor="middle">Brushless Motor 4</text>
+  <text x="940" y="271" font-size="10" class="s" text-anchor="middle">2212 · 920KV · CW</text>
+
+  <!-- ESP32-CAM -->
+  <rect x="540" y="460" width="220" height="72" rx="8" fill="#0b1430" stroke="#36c5e0" stroke-width="1.5"/>
+  <text x="650" y="486" font-size="14.5" class="t" text-anchor="middle">ESP32-CAM</text>
+  <text x="650" y="505" font-size="10.5" class="s" text-anchor="middle">onboard OV2640 · color / shape</text>
+  <text x="650" y="522" font-size="10.5" class="s" text-anchor="middle">WiFi MJPEG stream</text>
+  <!-- AMG8833 -->
+  <rect x="540" y="556" width="220" height="54" rx="7" fill="#0b1430" stroke="#46d39a" stroke-width="1.5"/>
+  <text x="650" y="580" font-size="13.5" class="t" text-anchor="middle">AMG8833 Thermal</text>
+  <text x="650" y="598" font-size="10.5" class="s" text-anchor="middle">8&#215;8 grid · I&#178;C &#8594; ESP32</text>
+
+  <!-- Ground laptop -->
+  <rect x="880" y="470" width="240" height="96" rx="8" fill="#0a1126" stroke="#36c5e0" stroke-width="1.5"/>
+  <text x="1000" y="500" font-size="14.5" class="t" text-anchor="middle" font-family="'Manrope',sans-serif">Ground Station Laptop</text>
+  <line x1="900" y1="512" x2="1100" y2="512" stroke="#1e3a52" stroke-width="1"/>
+  <text x="1000" y="532" font-size="11" class="s" text-anchor="middle">Python + OpenCV pipeline</text>
+  <text x="1000" y="550" font-size="11" class="s" text-anchor="middle">vegetation · shape · soil temp</text>
+
+  <!-- net labels -->
+  <text x="384" y="200" font-size="10.5" class="lab">battery power</text>
+  <text x="600" y="50"  font-size="10" fill="#4f8dff" text-anchor="end">PWM</text>
+  <text x="820" y="488" font-size="10" fill="#36c5e0" text-anchor="middle">WiFi</text>
+
+  <!-- power / data note -->
+  <text x="300" y="620" font-size="10.5" class="s">Note: the ESP32-CAM and AMG8833 draw 5V / 3.3V from the BEC rail.</text>
+  <text x="300" y="636" font-size="10.5" class="s">Camera and thermal data leave the drone over WiFi. The laptop runs the vision code,</text>
+  <text x="300" y="652" font-size="10.5" class="s">so the Arduino never touches OpenCV. Flight and vision are two independent systems.</text>
+
+  <!-- legend -->
+  <rect x="40" y="556" width="232" height="158" rx="8" fill="#0a1126" stroke="#1c2a55" stroke-width="1.2"/>
+  <text x="56" y="578" font-size="12" class="t" font-family="'Manrope',sans-serif">Net legend</text>
+  <line x1="56" y1="598" x2="86" y2="598" stroke="#ff5d6c" stroke-width="3.4"/>
+  <text x="96" y="602" font-size="11" class="lab">Battery power (high current)</text>
+  <line x1="56" y1="620" x2="86" y2="620" stroke="#ffb049" stroke-width="2.6"/>
+  <text x="96" y="624" font-size="11" class="lab">Regulated 5V (logic)</text>
+  <line x1="56" y1="642" x2="86" y2="642" stroke="#4f8dff" stroke-width="2"/>
+  <text x="96" y="646" font-size="11" class="lab">PWM throttle signal</text>
+  <line x1="56" y1="664" x2="86" y2="664" stroke="#46d39a" stroke-width="2"/>
+  <text x="96" y="668" font-size="11" class="lab">I&#178;C bus (sensors)</text>
+  <line x1="56" y1="686" x2="86" y2="686" stroke="#36c5e0" stroke-width="2.2" stroke-dasharray="6 5"/>
+  <text x="96" y="690" font-size="11" class="lab">WiFi (video + thermal)</text>
+</svg>
