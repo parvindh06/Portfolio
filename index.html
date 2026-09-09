@@ -4,13 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Arvindh Balaji — Electrical Engineering Portfolio</title>
-<meta name="description" content="Electrical Engineering student at UC Santa Cruz. Embedded AI systems, autonomous drones, FPGA design, and Formula SAE aerodynamics." />
-
+<meta name="description" content="Electrical Engineering student at UC Santa Cruz. Renewable-energy CAD intern at OurEnergy. Embedded AI systems, autonomous drones, FPGA design, and Formula SAE aerodynamics." />
+ 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+ 
 <style>
   :root {
     --black: #05070e;
@@ -25,14 +25,17 @@
     --accent: #4f8dff;
     --accent-soft: #8fb6ff;
     --glow: rgba(79, 141, 255, 0.35);
+    /* OurEnergy brand accents */
+    --oe-orange: #f5a623;
+    --oe-green: #7fb935;
     --maxw: 1180px;
     --radius: 16px;
   }
-
+ 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   html { scroll-behavior: smooth; }
-
+ 
   body {
     background: var(--black);
     color: var(--white);
@@ -41,7 +44,7 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
-
+ 
   /* Blueprint grid + glow atmosphere */
   body::before {
     content: "";
@@ -67,9 +70,9 @@
     pointer-events: none;
     opacity: 0.6;
   }
-
+ 
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
-
+ 
   /* ---------- NAV ---------- */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
@@ -112,7 +115,7 @@
   .nav-cta:hover { background: var(--accent); color: var(--black) !important; box-shadow: 0 0 18px var(--glow); }
   .nav-cta::after { display: none; }
   .menu-btn { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
-
+ 
   /* ---------- HERO ---------- */
   header.hero {
     min-height: 100vh; display: flex; align-items: center;
@@ -148,7 +151,7 @@
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 32px var(--glow); }
   .btn-ghost { background: transparent; color: var(--white); border: 1px solid var(--navy-line); }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
+ 
   .hero-meta {
     margin-top: 56px; display: flex; gap: 40px; flex-wrap: wrap;
     opacity: 0; animation: rise 0.7s ease forwards 0.58s;
@@ -156,9 +159,9 @@
   .hero-meta div { display: flex; flex-direction: column; }
   .hero-meta .num { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.8rem; color: var(--white); }
   .hero-meta .lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; }
-
+ 
   @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-
+ 
   /* ---------- SECTION SHELL ---------- */
   section { padding: 100px 0; position: relative; }
   .sec-head { margin-bottom: 54px; }
@@ -173,7 +176,7 @@
     letter-spacing: -0.02em; line-height: 1.05; max-width: 720px;
   }
   .sec-head p { color: var(--muted); max-width: 620px; margin-top: 16px; font-size: 1.05rem; }
-
+ 
   /* ---------- ABOUT ---------- */
   .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start; }
   .about-grid p { color: var(--muted); font-size: 1.08rem; margin-bottom: 18px; }
@@ -193,7 +196,63 @@
   .edu-card ul { list-style: none; }
   .edu-card li { color: var(--muted); font-size: 0.92rem; padding-left: 18px; position: relative; margin-bottom: 6px; }
   .edu-card li::before { content: ""; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; background: var(--accent); border-radius: 1px; }
-
+ 
+  /* ---------- FEATURED INTERNSHIP (OurEnergy) ---------- */
+  .intern-feature {
+    display: grid; grid-template-columns: 0.85fr 1.4fr; gap: 0;
+    background: var(--navy-card); border: 1px solid var(--navy-line);
+    border-radius: 22px; overflow: hidden; position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .intern-feature:hover { transform: translateY(-3px); border-color: rgba(127,185,53,0.5); }
+  .intern-feature::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--oe-orange), var(--oe-green));
+    z-index: 1;
+  }
+  .intern-side {
+    padding: 34px; border-right: 1px solid var(--navy-line);
+    display: flex; flex-direction: column; gap: 22px;
+    background: linear-gradient(160deg, var(--navy-700), var(--navy-800));
+  }
+  .intern-logo {
+    background: #ffffff; border-radius: 12px; padding: 26px 22px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  }
+  .intern-logo img { width: 100%; max-width: 250px; height: auto; display: block; }
+  .intern-facts { display: flex; flex-direction: column; gap: 15px; }
+  .ifact { display: flex; flex-direction: column; gap: 3px; }
+  .ifact-lbl {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem;
+    color: var(--oe-green); letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .ifact-val { color: var(--white); font-size: 0.95rem; font-weight: 600; line-height: 1.35; }
+  .intern-body { padding: 38px; display: flex; flex-direction: column; gap: 16px; }
+  .intern-badge {
+    align-self: flex-start;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem;
+    color: var(--oe-green); letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid rgba(127,185,53,0.4); border-radius: 999px; padding: 5px 13px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .intern-badge .live {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--oe-green);
+    box-shadow: 0 0 10px var(--oe-green); animation: pulse 2.4s ease-in-out infinite;
+  }
+  .intern-body h3 { font-family: 'Syne', sans-serif; font-size: 1.55rem; line-height: 1.15; }
+  .intern-intro { color: var(--muted); font-size: 1rem; }
+  .intern-list { list-style: none; display: flex; flex-direction: column; gap: 13px; margin-top: 2px; }
+  .intern-list li {
+    color: var(--muted); font-size: 0.95rem; padding-left: 22px; position: relative; line-height: 1.55;
+  }
+  .intern-list li::before {
+    content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px;
+    background: linear-gradient(135deg, var(--oe-orange), var(--oe-green)); border-radius: 2px;
+  }
+  .intern-list strong { color: var(--white); font-weight: 600; }
+  .intern-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+ 
   /* ---------- SKILLS ---------- */
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
   .skill-card {
@@ -210,7 +269,7 @@
     transition: color 0.2s, border-color 0.2s;
   }
   .chip:hover { color: var(--white); border-color: var(--accent); }
-
+ 
   /* ---------- PROJECTS ---------- */
   .projects { display: flex; flex-direction: column; gap: 32px; }
   .project {
@@ -220,7 +279,7 @@
   }
   .project:hover { border-color: var(--accent); transform: translateY(-3px); }
   .project:nth-child(even) .proj-media { order: 2; }
-
+ 
   .proj-media {
     position: relative; min-height: 320px; background: var(--navy-800);
     display: flex; align-items: center; justify-content: center; overflow: hidden;
@@ -240,7 +299,7 @@
     display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.5rem;
   }
   .proj-placeholder span { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--dim); letter-spacing: 0.08em; }
-
+ 
   .proj-body { padding: 36px; display: flex; flex-direction: column; }
   .proj-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; }
   .proj-body h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; line-height: 1.15; margin-bottom: 14px; }
@@ -255,7 +314,7 @@
   }
   .proj-link:hover { background: var(--accent); color: var(--black); border-color: var(--accent); }
   .proj-link.disabled { color: var(--dim); border-style: dashed; pointer-events: none; }
-
+ 
   /* ---------- RESUME ---------- */
   .resume-block {
     background: linear-gradient(135deg, var(--navy-700), var(--navy-800));
@@ -271,7 +330,7 @@
   .resume-block h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 12px; }
   .resume-block p { color: var(--muted); }
   .resume-block .btn { position: relative; z-index: 1; }
-
+ 
   /* ---------- CONTACT / FOOTER ---------- */
   footer { padding: 90px 0 50px; border-top: 1px solid var(--navy-line); margin-top: 40px; }
   .contact-head { text-align: center; margin-bottom: 48px; }
@@ -296,11 +355,11 @@
     border-top: 1px solid var(--navy-line); padding-top: 24px;
     font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--dim);
   }
-
+ 
   /* ---------- SCROLL REVEAL ---------- */
   .reveal { opacity: 0; transform: translateY(34px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.in { opacity: 1; transform: translateY(0); }
-
+ 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 880px) {
     .nav-links { display: none; }
@@ -310,6 +369,8 @@
     }
     .menu-btn { display: block; }
     .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .intern-feature { grid-template-columns: 1fr; }
+    .intern-side { border-right: none; border-bottom: 1px solid var(--navy-line); }
     .project { grid-template-columns: 1fr; }
     .project:nth-child(even) .proj-media { order: 0; }
     .proj-media { min-height: 220px; }
@@ -318,7 +379,7 @@
 </style>
 </head>
 <body>
-
+ 
 <!-- ======================= NAV ======================= -->
 <nav>
   <div class="nav-inner">
@@ -326,6 +387,7 @@
     <button class="menu-btn" aria-label="menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
     <div class="nav-links" id="navlinks">
       <a href="#about">About</a>
+      <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#research">Research</a>
@@ -333,25 +395,26 @@
     </div>
   </div>
 </nav>
-
+ 
 <!-- ======================= HERO ======================= -->
 <header class="hero" id="top">
   <div class="wrap">
     <span class="eyebrow">Electrical Engineering · UC Santa Cruz</span>
     <h1>Electrical Engineering <span class="grad">student &amp; builder.</span></h1>
-    <p class="lead">I build hardware and the intelligence that runs on it. Embedded AI, autonomous drones, FPGA logic, and Formula SAE aerodynamics, taken from a blank CAD canvas through validated, working prototypes.</p>
+    <p class="lead">I build hardware and the intelligence that runs on it. Renewable-energy CAD, embedded AI, autonomous drones, and Formula SAE aerodynamics, taken from a blank CAD canvas through validated, working systems.</p>
     <div class="hero-actions">
-      <a href="#projects" class="btn btn-primary">View my work →</a>
+      <a href="#experience" class="btn btn-primary">See my work →</a>
       <a href="Arvindh_Balaji_Resume.pdf" target="_blank" class="btn btn-ghost">Download resume</a>
     </div>
     <div class="hero-meta">
-      <div><span class="num">4+</span><span class="lbl">Engineering Projects</span></div>
-      <div><span class="num">2028</span><span class="lbl">Expected Graduation</span></div>
+      <div><span class="num">OurEnergy</span><span class="lbl">Current Internship</span></div>
+      <div><span class="num">3+</span><span class="lbl">Engineering Projects</span></div>
       <div><span class="num">1</span><span class="lbl">Published Research Paper</span></div>
+      <div><span class="num">2028</span><span class="lbl">Expected Graduation</span></div>
     </div>
   </div>
 </header>
-
+ 
 <!-- ======================= ABOUT ======================= -->
 <section id="about">
   <div class="wrap">
@@ -361,8 +424,8 @@
     </div>
     <div class="about-grid">
       <div class="reveal">
-        <p>I am an Electrical Engineering student at UC Santa Cruz with hands-on experience designing, building, and validating embedded AI systems, autonomous drones, and Formula SAE aerodynamic components.</p>
-        <p>My work spans <strong>mechanical design, firmware, computer vision, PCB-level hardware, and technical documentation</strong>. I like owning a problem end to end, from sketching geometry in CAD to soldering the board, tuning the model, and field testing the result.</p>
+        <p>I am an Electrical Engineering student at UC Santa Cruz, currently interning at <strong>OurEnergy</strong>, where I do CAD and electrical design work for real renewable-energy microgrid installations.</p>
+        <p>My work spans <strong>power and PV system design, mechanical CAD, firmware, computer vision, and technical documentation</strong>. I like owning a problem end to end, from sizing conductors and drafting single-line diagrams to sketching geometry in CAD, tuning a model, and field testing the result.</p>
         <p>I am looking for an engineering internship where I can apply that hardware and software development experience to real product challenges.</p>
       </div>
       <div class="edu-card reveal">
@@ -383,12 +446,63 @@
     </div>
   </div>
 </section>
-
+ 
+<!-- ======================= EXPERIENCE (FEATURED INTERNSHIP) ======================= -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">02 / Experience</div>
+      <h2>Now interning at OurEnergy.</h2>
+      <p>My first industry role, applying circuit, power, and CAD skills to real solar-plus-storage microgrid projects.</p>
+    </div>
+ 
+    <div class="intern-feature reveal">
+      <!-- Left rail: logo + quick facts -->
+      <div class="intern-side">
+        <div class="intern-logo">
+          <img src="Ourenergy_logo.webp" alt="OurEnergy company logo">
+        </div>
+        <div class="intern-facts">
+          <div class="ifact">
+            <span class="ifact-lbl">Role</span>
+            <span class="ifact-val">CAD &amp; Electrical Engineering Intern</span>
+          </div>
+          <div class="ifact">
+            <span class="ifact-lbl">Duration</span>
+            <span class="ifact-val">June 2026 — Present</span>
+          </div>
+          <div class="ifact">
+            <span class="ifact-lbl">Focus</span>
+            <span class="ifact-val">Renewable Energy · Microgrid &amp; PV Design</span>
+          </div>
+        </div>
+        <a href="Arvindh_Balaji_Resume.pdf" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;">↓ Full resume (PDF)</a>
+      </div>
+ 
+      <!-- Right: description + achievements -->
+      <div class="intern-body">
+        <span class="intern-badge"><span class="live"></span>Current Internship</span>
+        <h3>Renewable-Energy CAD &amp; Electrical Design</h3>
+        <p class="intern-intro">OurEnergy is a technical consulting, engineering, and project development firm focused on renewable energy. On the engineering team I produce the electrical design documentation behind real solar-plus-storage microgrid installations, from single-line diagrams through code-compliant conductor and grounding design.</p>
+        <ul class="intern-list">
+          <li><strong>Drafted single-line diagrams in AutoCAD</strong> for 12 microgrid installations, mapping PV array, battery inverter, transfer switch, and utility service connections into a single reviewed drawing set.</li>
+          <li><strong>Sized conductors, conduit, and overcurrent protection</strong> for microgrid feeders and combiner runs, verifying every branch stayed under the 3% voltage-drop target and met NEC 690 and 705 requirements.</li>
+          <li><strong>Developed grounding and bonding plans</strong> for battery enclosures and PV racking, coordinating equipment ground-conductor sizing with the mechanical enclosure layout.</li>
+        </ul>
+        <div class="intern-tags">
+          <span class="chip">AutoCAD</span><span class="chip">Single-Line Diagrams</span><span class="chip">PV Systems</span>
+          <span class="chip">NEC 690 / 705</span><span class="chip">Microgrids</span><span class="chip">Grounding &amp; Bonding</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
 <!-- ======================= SKILLS ======================= -->
 <section id="skills">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-tag">02 / Capabilities</div>
+      <div class="sec-tag">03 / Capabilities</div>
       <h2>Skills &amp; certifications.</h2>
       <p>Tools and methods I use to take an idea from design review to a working, documented build.</p>
     </div>
@@ -400,6 +514,15 @@
           <span class="chip">Python</span><span class="chip">C++</span><span class="chip">C</span>
           <span class="chip">Java</span><span class="chip">MATLAB</span><span class="chip">Simulink</span>
           <span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Git</span><span class="chip">Linux</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic">// power</div>
+        <h3>Power &amp; PV Systems</h3>
+        <div class="chips">
+          <span class="chip">AutoCAD</span><span class="chip">Single-Line Diagrams</span><span class="chip">NEC 690 / 705</span>
+          <span class="chip">Conductor Sizing</span><span class="chip">Voltage-Drop Analysis</span><span class="chip">Grounding &amp; Bonding</span>
+          <span class="chip">Microgrid Design</span>
         </div>
       </div>
       <div class="skill-card reveal">
@@ -456,7 +579,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- ======================= PROJECTS ======================= -->
 <!--
   ================= HOW TO ADD A NEW PROJECT =================
@@ -470,13 +593,13 @@
 <section id="projects">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-tag">03 / Selected Work</div>
+      <div class="sec-tag">04 / Selected Work</div>
       <h2>Projects.</h2>
       <p>A mix of team engineering, independent builds, and research. Replace the image panels with your CAD renders and schematics as you capture them.</p>
     </div>
-
+ 
     <div class="projects">
-
+ 
       <!-- PROJECT 1: Arduino Seedling Drone -->
       <article class="project reveal">
         <div class="proj-media" style="flex-direction:column;justify-content:flex-start;padding:0;background:#0a1126;min-height:0;">
@@ -504,7 +627,7 @@
           </div>
         </div>
       </article>
-
+ 
       <!-- PROJECT 2: Modular Prosthetics Research (with paper PDF) -->
       <article class="project reveal" id="research">
         <div class="proj-media" style="background:#070d1c;">
@@ -526,7 +649,7 @@
           </div>
         </div>
       </article>
-
+ 
       <!-- PROJECT 3: Formula Slug Aero -->
       <article class="project reveal">
         <div class="proj-media">
@@ -549,53 +672,29 @@
           </div>
         </div>
       </article>
-
-      <!-- PROJECT 4: AI-Powered Camera System -->
-      <article class="project reveal">
-        <div class="proj-media">
-          <!-- Replace with: <img src="ai-camera.png" alt="AI camera enclosure CAD"> -->
-          <div class="proj-placeholder">
-            <div class="pico">◉</div>
-            <span>Add CAD render: ai-camera.png</span>
-          </div>
-        </div>
-        <div class="proj-body">
-          <div class="proj-kicker">Personal Project · Jan 2025</div>
-          <h3>AI-Powered Camera System</h3>
-          <p>A sub-50 ms real-time computer vision system pairing Arduino microcontrollers with Python and C++ for live object detection and motion tracking on resource-constrained embedded hardware, communicating over I2C, SPI, and UART. I designed the full mechanical enclosure in Onshape and tuned lightweight models in TensorFlow Lite and OpenCV, benchmarking accuracy, latency, and power draw across firmware iterations with oscilloscope, multimeter, and logic analyzer measurements.</p>
-          <div class="proj-tags">
-            <span class="chip">TensorFlow Lite</span><span class="chip">OpenCV</span><span class="chip">Arduino</span>
-            <span class="chip">Edge AI</span><span class="chip">Onshape</span><span class="chip">C++</span>
-          </div>
-          <div class="proj-links">
-            <a class="proj-link disabled" href="#">CAD / Schematic (add link)</a>
-            <a class="proj-link disabled" href="#">GitHub (add link)</a>
-          </div>
-        </div>
-      </article>
-
+ 
     </div>
   </div>
 </section>
-
+ 
 <!-- ======================= RESUME ======================= -->
 <section id="resume">
   <div class="wrap">
     <div class="resume-block reveal">
       <div class="rtext">
         <h2>Want the full picture?</h2>
-        <p>My one-page resume covers my coursework, complete skill set, certifications, and the detail behind every project above. Open it as a PDF or download a copy.</p>
+        <p>My one-page resume covers my OurEnergy internship, coursework, complete skill set, certifications, and the detail behind every project above. Open it as a PDF or download a copy.</p>
       </div>
       <a href="Arvindh_Balaji_Resume.pdf" target="_blank" class="btn btn-primary">↓ Open resume (PDF)</a>
     </div>
   </div>
 </section>
-
+ 
 <!-- ======================= CONTACT / FOOTER ======================= -->
 <footer>
   <div class="wrap">
     <div class="contact-head">
-      <div class="sec-tag">04 / Contact</div>
+      <div class="sec-tag">05 / Contact</div>
       <h2>Let's build something.</h2>
       <br>
       <a href="mailto:parvindh06@gmail.com" class="email-big">parvindh06@gmail.com</a>
@@ -613,19 +712,19 @@
     </div>
   </div>
 </footer>
-
+ 
 <script>
   // Scroll reveal
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
+ 
   // Close mobile menu on link click
   document.querySelectorAll('#navlinks a').forEach(a =>
     a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open'))
   );
-
+ 
   // Nav background solid after scroll
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
@@ -634,3 +733,4 @@
 </script>
 </body>
 </html>
+ 
